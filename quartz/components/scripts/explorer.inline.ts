@@ -121,8 +121,17 @@ function createFolderNode(
     a.textContent = node.displayName
     button.replaceWith(a)
   } else {
+    // lorsqu'on clique on fait ouvrir + link
     const span = titleContainer.querySelector(".folder-title") as HTMLElement
     span.textContent = node.displayName
+
+    const button = titleContainer.querySelector(".folder-button") as HTMLElement
+    const a = document.createElement("a")
+    a.href = resolveRelative(currentSlug, folderPath)
+    a.dataset.for = folderPath
+    a.className = "folder-title"
+    a.textContent = node.displayName
+    button.replaceWith(a)
   }
 
   // if the saved state is collapsed or the default state is collapsed
@@ -138,8 +147,11 @@ function createFolderNode(
 
   if (!isCollapsed || folderIsPrefixOfCurrentSlug) {
     folderOuter.classList.add("open")
+    folderOuter.childNodes.forEach((childFolder) => {
+      childFolder.querySelectorAll(".folder-outer")
+    })
   }
-
+  
   for (const child of node.children) {
     const childNode = child.isFolder
       ? createFolderNode(currentSlug, child, opts)

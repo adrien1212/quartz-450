@@ -55,7 +55,9 @@ const config: QuartzConfig = {
   },
   plugins: {
     transformers: [
-      Plugin.FrontMatter(),
+      Plugin.FrontMatter({ delimiters: "+++", language: "toml" }),
+      Plugin.OxHugoFlavouredMarkdown(),
+      Plugin.GitHubFlavoredMarkdown(),
       Plugin.CreatedModifiedDate({
         priority: ["frontmatter", "git", "filesystem"],
       }),

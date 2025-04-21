@@ -38,7 +38,30 @@ export const defaultContentPageLayout: PageLayout = {
         { Component: Component.ReaderMode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer({
+      folderClickBehavior: "link", // what happens when you click a folder ("link" to navigate to folder page on click or "collapse" to collapse folder on click)
+      folderDefaultState: "collapsed", // default state of folders ("collapsed" or "open")
+      useSavedState: true,
+      sortFn: (a, b) => {
+        // Sort order: folders first, then files
+        if ((!a.isFolder && !b.isFolder) || (a.isFolder && b.isFolder)) {
+          // First try to sort by weight if available
+          const weightA = a.data?.weight !== undefined ? a.data.weight : Infinity;
+          const weightB = b.data?.weight !== undefined ? b.data.weight : Infinity;
+          
+          if (weightA !== weightB) {
+            // Sort by weight (lower weight comes first)
+            return weightA - weightB;
+          }
+          
+          // Fall back to alphabetical sorting if weights are equal or not present
+          return a.displayName.localeCompare(b.displayName, undefined, {
+            numeric: true,
+            sensitivity: "base",
+          });
+        }
+      }
+    }),
   ],
   right: [
     Component.Graph(),
@@ -62,7 +85,30 @@ export const defaultListPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer({
+      folderClickBehavior: "link", // what happens when you click a folder ("link" to navigate to folder page on click or "collapse" to collapse folder on click)
+      folderDefaultState: "collapsed", // default state of folders ("collapsed" or "open")
+      useSavedState: true,
+      sortFn: (a, b) => {
+        // Sort order: folders first, then files
+        if ((!a.isFolder && !b.isFolder) || (a.isFolder && b.isFolder)) {
+          // First try to sort by weight if available
+          const weightA = a.data?.weight !== undefined ? a.data.weight : Infinity;
+          const weightB = b.data?.weight !== undefined ? b.data.weight : Infinity;
+          
+          if (weightA !== weightB) {
+            // Sort by weight (lower weight comes first)
+            return weightA - weightB;
+          }
+          
+          // Fall back to alphabetical sorting if weights are equal or not present
+          return a.displayName.localeCompare(b.displayName, undefined, {
+            numeric: true,
+            sensitivity: "base",
+          });
+        }
+      }
+    }),
   ],
   right: [],
 }
