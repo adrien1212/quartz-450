@@ -40,7 +40,7 @@ export const defaultContentPageLayout: PageLayout = {
     }),
     Component.Explorer({
       folderClickBehavior: "link", // what happens when you click a folder ("link" to navigate to folder page on click or "collapse" to collapse folder on click)
-      folderDefaultState: "collapsed", // default state of folders ("collapsed" or "open")
+      folderDefaultState: "open", // default state of folders ("collapsed" or "open")
       useSavedState: true,
       sortFn: (a, b) => {
         // Sort order: folders first, then files
@@ -87,7 +87,7 @@ export const defaultListPageLayout: PageLayout = {
     }),
     Component.Explorer({
       folderClickBehavior: "link", // what happens when you click a folder ("link" to navigate to folder page on click or "collapse" to collapse folder on click)
-      folderDefaultState: "collapsed", // default state of folders ("collapsed" or "open")
+      folderDefaultState: "open", // default state of folders ("collapsed" or "open")
       useSavedState: true,
       sortFn: (a, b) => {
         // Sort order: folders first, then files

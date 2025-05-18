@@ -18,13 +18,15 @@ export class FileTrieNode<T extends FileTrieData = ContentDetails> {
   private fileSegmentHint?: string
   private displayNameOverride?: string
   data: T | null
+  depth: number
 
-  constructor(segments: string[], data?: T) {
+  constructor(segments: string[], data?: T, depth?: number) {
     this.children = []
     this.slugSegments = segments
     this.data = data ?? null
     this.isFolder = false
     this.displayNameOverride = undefined
+    this.depth = depth ?? 0
   }
 
   get displayName(): string {
@@ -53,7 +55,7 @@ export class FileTrieNode<T extends FileTrieData = ContentDetails> {
 
   private makeChild(path: string[], file?: T) {
     const fullPath = [...this.slugSegments, path[0]]
-    const child = new FileTrieNode<T>(fullPath, file)
+    const child = new FileTrieNode<T>(fullPath, file, this.depth + 1)
     this.children.push(child)
     return child
   }

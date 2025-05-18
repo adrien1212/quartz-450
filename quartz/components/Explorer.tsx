@@ -74,11 +74,11 @@ export default ((userOpts?: Partial<Options>) => {
         })}
       >
         <button
-          type="button"
           class="explorer-toggle mobile-explorer hide-until-loaded"
           data-mobile={true}
           aria-controls="explorer-content"
         >
+          {/* SVG pour le hamburger menu quand mode mobile */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -127,6 +127,7 @@ export default ((userOpts?: Partial<Options>) => {
         <template id="template-folder">
           <li>
             <div class="folder-container">
+              {/* 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="12"
@@ -141,6 +142,7 @@ export default ((userOpts?: Partial<Options>) => {
               >
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
+              */}
               <div>
                 <button class="folder-button">
                   <span class="folder-title"></span>

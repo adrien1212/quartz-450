@@ -159,6 +159,10 @@ function createFolderNode(
     ul.appendChild(childNode)
   }
 
+  if (node.depth === 1) {
+    titleContainer.classList.add("folder-title-depth1");
+  }
+
   return li
 }
 
